@@ -1,17 +1,18 @@
-// app/api/companies/by-skill/[skill]/route.js
+
 import clientPromise from '../../../../../../lib/mongodb.js';
+
 
 export async function GET(request, { params }) {
   try {
-    const skillParam = params.skill; // dynamic route parameter
+    const locationParam = params.location; // dynamic route parameter
 
     const client = await clientPromise;
     const db = client.db(); // replace with your DB name
     const companies = db.collection('companies');
 
-    // search inside hiringCriteria.skills array (case-insensitive)
+    // case-insensitive match for location
     const matchedCompanies = await companies
-      .find({ "hiringCriteria.skills": { $regex: `^${skillParam}$`, $options: 'i' } })
+      .find({ location: { $regex: `^${locationParam}$`, $options: 'i' } })
       .toArray();
 
     return new Response(JSON.stringify(matchedCompanies), {
@@ -20,7 +21,7 @@ export async function GET(request, { params }) {
     });
   } catch (err) {
     console.error(err);
-    return new Response(JSON.stringify({ error: 'Failed to fetch companies by skill' }), {
+    return new Response(JSON.stringify({ error: 'Failed to fetch companies by location' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
