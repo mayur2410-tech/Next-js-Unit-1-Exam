@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* styles/globals.css */
+@font-face {
+  font-family: 'Soehne535';
+  src: url('/fonts/Soehne535-Regular.woff2') format('woff2'),
+       url('/fonts/Soehne535-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Soehne535';
+  src: url('/fonts/Soehne535-Bold.woff2') format('woff2'),
+       url('/fonts/Soehne535-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Optional: Set as default font */
+* {
+  font-family: 'Soehne535', sans-serif;
+}
